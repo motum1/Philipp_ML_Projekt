@@ -149,3 +149,35 @@ Dieses Notebook dient dazu,
 1. die wichtigsten Modelltreiber transparent zu machen,
 2. Richtung und Stärke der einzelnen Feature-Beiträge global zu interpretieren und
 3. die Ergebnisse in publikations- und präsentationstauglicher Form aufzubereiten.
+
+
+
+
+
+## 5. Lokale SHAP-Analysen und Fallbeispiele (`shap_local.ipynb`)
+
+Dieses Notebook dient der **lokalen Interpretation einzelner Modellentscheidungen** auf Basis von **SHAP-Werten**. Verwendet wird eine logistische Regression in Kombination mit dem **SHAP KernelExplainer**, sodass die Beiträge der Features direkt in **Wahrscheinlichkeitseinheiten** dargestellt werden können.
+
+### Vorgehen
+
+Die Daten werden eingelesen und über eine **Repeated Stratified Cross-Validation** ausgewertet. Kontinuierliche Variablen werden innerhalb jedes Trainingsfolds standardisiert, während die binäre Dummy-Variable `Geschlecht_weiblich` unskaliert bleibt. Für jeden Fold werden anschließend SHAP-Werte auf Basis der vorhergesagten Wahrscheinlichkeiten (`predict_proba`) berechnet und über alle Testfolds zusammengeführt.
+
+Das Notebook enthält zusätzlich einen numerischen Selbsttest, bei dem geprüft wird, ob sich die Modellwahrscheinlichkeit für einzelne Beobachtungen korrekt aus **Expected Value + Summe der SHAP-Werte** rekonstruieren lässt.
+
+### Visualisierung
+
+Auf dieser Grundlage werden **lokale SHAP-Waterfall-Plots** für einzelne Beobachtungen erzeugt. Die Darstellung kombiniert:
+
+- die **Basiswahrscheinlichkeit** des Modells
+- die **individuelle Vorhersagewahrscheinlichkeit**
+- die **beitragsstärksten Features**, die die Vorhersage in Richtung verletzt oder nicht verletzt verschieben
+
+Für eine bessere Lesbarkeit wird der eigentliche Waterfall-Plot mit einem zusätzlichen Header zu einer gemeinsamen Grafik zusammengeführt.
+
+### Ziel
+
+Dieses Notebook dient dazu,
+
+1. einzelne Modellentscheidungen auf Fallniveau nachvollziehbar zu machen,
+2. die numerische Konsistenz der SHAP-Zerlegung zu überprüfen und
+3. lokale Erklärungen in gut lesbarer Form für Berichte, Präsentationen oder exemplarische Fallanalysen bereitzustellen.
