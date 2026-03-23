@@ -115,9 +115,9 @@ Dieses Notebook dient dazu,
 
 
 
-## 4. Globale SHAP-Analyse des Stable-70%-Modells (`shap_stable_70_percent.ipynb`)
+## 4. Globale SHAP-Analyse des Stable-70%-Modells und Top-38_Modells (`shap_stable_70_percent.ipynb`)
 
-Dieses Notebook dient der **globalen Modellinterpretation** des finalen Stable-70%-Modells auf Basis von **SHAP-Werten**. Verwendet wird eine logistische Regression mit festen Hyperparametern sowie der **SHAP LinearExplainer**, sodass die Beiträge der einzelnen Merkmale in **Log-Odds-Einheiten** dargestellt werden.
+Dieses Notebook dient der **globalen Modellinterpretation** der beiden finalen Modelle auf Basis von **SHAP-Werten**. Verwendet wird eine logistische Regression mit festen Hyperparametern sowie der **SHAP LinearExplainer**, sodass die Beiträge der einzelnen Merkmale in **Log-Odds-Einheiten** dargestellt werden.
 
 ### Vorgehen
 
@@ -146,6 +146,6 @@ Die globalen SHAP-Ergebnisse werden in mehreren Formen dargestellt:
 
 Dieses Notebook dient dazu,
 
-1. die wichtigsten Modelltreiber des Stable-70%-Modells transparent zu machen,
+1. die wichtigsten Modelltreiber transparent zu machen,
 2. Richtung und Stärke der einzelnen Feature-Beiträge global zu interpretieren und
 3. die Ergebnisse in publikations- und präsentationstauglicher Form aufzubereiten.
