@@ -110,3 +110,42 @@ Dieses Notebook dient dazu,
 1. die finale Modellleistung der verschiedenen Feature-Sets direkt zu vergleichen,
 2. die Trennschärfe der Modelle zu beurteilen und
 3. die Qualität der vorhergesagten Wahrscheinlichkeiten über Kalibrationsplots sichtbar zu machen.
+
+
+
+
+
+## 4. Globale SHAP-Analyse des Stable-70%-Modells (`shap_stable_70_percent.ipynb`)
+
+Dieses Notebook dient der **globalen Modellinterpretation** des finalen Stable-70%-Modells auf Basis von **SHAP-Werten**. Verwendet wird eine logistische Regression mit festen Hyperparametern sowie der **SHAP LinearExplainer**, sodass die Beiträge der einzelnen Merkmale in **Log-Odds-Einheiten** dargestellt werden.
+
+### Vorgehen
+
+Die Daten werden eingelesen, in Zielvariable und Prädiktoren aufgeteilt und über eine **Repeated Stratified Cross-Validation** ausgewertet. Kontinuierliche Variablen werden innerhalb jedes Trainingsfolds standardisiert, während die binäre Dummy-Variable `Geschlecht_weiblich` unskaliert bleibt. Für jeden Fold werden anschließend SHAP-Werte berechnet und über alle Testfolds zusammengeführt.
+
+Auf dieser Basis werden zwei globale Kennwerte pro Feature bestimmt:
+
+- **signed mean SHAP** zur Beschreibung der mittleren Wirkungsrichtung
+- **mean(|SHAP|)** zur Beschreibung der globalen Relevanz
+
+Zusätzlich enthält das Notebook mehrere Kontrollschritte, darunter:
+- Prüfung auf `NaN`-/`Inf`-Werte in den SHAP-Ergebnissen
+- Kontrolle der fold-spezifischen Expected Values
+- Selbsttest zur numerischen Konsistenz der SHAP-Zerlegung
+- vollständiges Feature-Ranking nach globaler SHAP-Bedeutung
+
+### Visualisierung
+
+Die globalen SHAP-Ergebnisse werden in mehreren Formen dargestellt:
+
+- **Beeswarm-Plot** für die Verteilung und Richtung der SHAP-Werte
+- **Balkenplot** zur geordneten Darstellung der globalen Feature-Bedeutung
+- **Top-K-Visualisierung** der wichtigsten Merkmale für kompaktere Berichte und Präsentationen
+
+### Ziel
+
+Dieses Notebook dient dazu,
+
+1. die wichtigsten Modelltreiber des Stable-70%-Modells transparent zu machen,
+2. Richtung und Stärke der einzelnen Feature-Beiträge global zu interpretieren und
+3. die Ergebnisse in publikations- und präsentationstauglicher Form aufzubereiten.
