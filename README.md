@@ -42,7 +42,9 @@ Dieses Notebook dient als erster Screening-Schritt, um
 3. die Modellauswahl gezielt vorzubereiten.
 
 
-## 2. Nested Cross-Validation und Vergleich reduzierter Feature-Sets
+
+
+## 2. Nested Cross-Validation und Vergleich reduzierter Feature-Sets (`nested_cv_featureauswahl_hyperparameter_kalibrierung.ipynb`)
 
 Dieser Abschnitt umfasst zwei zentrale Schritte der Modellverfeinerung: die methodisch saubere Entwicklung eines logistischen Regressionsmodells mit **Nested Cross-Validation** sowie den anschließenden Vergleich verschiedener **reduzierter Feature-Sets**.
 
@@ -69,3 +71,42 @@ Dieser Abschnitt dient dazu,
 1. ein methodisch robustes logistisches Regressionsmodell ohne Data Leakage zu entwickeln,
 2. stabile und wiederholt ausgewählte Merkmale zu identifizieren und
 3. zu prüfen, ob reduzierte Feature-Sets eine vergleichbare Leistung wie das vollständige Modell erreichen.
+
+
+
+
+## 3. Finale Performance-, Kalibrations- und Metrikbewertung (`finale_performance_kalibration_metriken_plots.ipynb`)
+
+Dieses Notebook vergleicht drei vordefinierte Datensätze bzw. Feature-Sets mit derselben **logistischen Regression** und bewertet nicht nur die Klassifikationsleistung, sondern auch die **Diskriminationsfähigkeit** und **Kalibrierung** der Modelle.
+
+Verglichen werden:
+
+- **Full**: alle numerischen Features
+- **Top-38**: reduziertes Feature-Set mit 38 Variablen
+- **Stable-70%**: kompaktes, stabileres Kern-Feature-Set
+
+### Vorgehen
+
+Die Daten werden eingelesen, die Zielvariable (`Verletzungsstatus`) getrennt und auf numerische Prädiktoren beschränkt. Für jedes Feature-Set wird dieselbe Modellpipeline verwendet. Die Bewertung erfolgt über eine **5×10 Repeated Stratified Cross-Validation** mit festen, zuvor optimierten Hyperparametern der logistischen Regression.
+
+Berichtet werden zentrale Leistungsmetriken mit empirischen 95%-Konfidenzintervallen, darunter:
+
+- Accuracy
+- Balanced Accuracy
+- F1 Score
+- Recall
+- Precision
+- ROC-AUC
+- PR-AUC
+- Brier Score
+- LogLoss
+
+Zusätzlich werden für jedes Feature-Set eine **gepoolte ROC-Kurve** sowie ein **Kalibrationsplot** erstellt.
+
+### Ziel
+
+Dieses Notebook dient dazu,
+
+1. die finale Modellleistung der verschiedenen Feature-Sets direkt zu vergleichen,
+2. die Trennschärfe der Modelle zu beurteilen und
+3. die Qualität der vorhergesagten Wahrscheinlichkeiten über Kalibrationsplots sichtbar zu machen.
