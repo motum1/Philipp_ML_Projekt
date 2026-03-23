@@ -75,9 +75,9 @@ Dieser Abschnitt dient dazu,
 
 
 
-## 3. Finale Performance-, Kalibrations- und Metrikbewertung (`finale_performance_kalibration_metriken_plots.ipynb`)
+## 3. Finale Performance- und Kalibrationsbewertung (`finale_performance_kalibration_metriken_plots.ipynb`)
 
-Dieses Notebook vergleicht drei vordefinierte Datensätze bzw. Feature-Sets mit derselben **logistischen Regression** und bewertet nicht nur die Klassifikationsleistung, sondern auch die **Diskriminationsfähigkeit** und **Kalibrierung** der Modelle.
+Dieses Notebook vergleicht drei vordefinierte Feature-Sets mit derselben logistischen Regression und bewertet neben der **Klassifikationsleistung** auch die **Diskriminationsfähigkeit** und die **Kalibration der vorhergesagten Wahrscheinlichkeiten**.
 
 Verglichen werden:
 
