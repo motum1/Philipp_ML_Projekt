@@ -181,3 +181,48 @@ Dieses Notebook dient dazu,
 1. einzelne Modellentscheidungen auf Fallniveau nachvollziehbar zu machen,
 2. die numerische Konsistenz der SHAP-Zerlegung zu überprüfen und
 3. lokale Erklärungen in gut lesbarer Form für Berichte, Präsentationen oder exemplarische Fallanalysen bereitzustellen.
+
+
+
+
+
+## 6. Vergleich globaler SHAP-Muster zwischen Top-38 und Stable-70 (`vergleich_shap_top_38_und_stable_70.ipynb`)
+
+Dieses Notebook vergleicht die **globalen SHAP-Ergebnisse** der beiden reduzierten Feature-Sets **Top-38** und **Stable-70%**. Ziel ist es zu prüfen, wie konsistent sich die wichtigsten Modelltreiber zwischen beiden Modellen wiederfinden und ob sich auch auf inhaltlicher Ebene ähnliche Muster zeigen.
+
+### Vorgehen
+
+Für beide Modelle werden zunächst Tabellen mit den absoluten SHAP-Werten erstellt. Daraus werden pro Modell:
+
+- **Rangplätze** der Features
+- **normalisierte SHAP-Anteile**
+
+berechnet. Anschließend werden die gemeinsamen Features beider Modelle zusammengeführt und auf mehreren Ebenen verglichen.
+
+### Analysen
+
+Das Notebook umfasst drei zentrale Vergleichsschritte:
+
+- **Globaler Vergleich**  
+  Überlappung der Top-5, Top-10 und Top-15 Features sowie Spearman-Korrelationen der SHAP-Wichtigkeit und der Feature-Ränge.
+
+- **Bestätigungsanalyse**  
+  Prüfung, inwieweit die wichtigsten Stable-70%-Features auch im breiteren Top-38-Modell wieder auftauchen, einschließlich Rangdifferenzen und Verhältnis der normalisierten SHAP-Anteile.
+
+- **Domain-Analyse**  
+  Heuristische Zuordnung der Features zu übergeordneten Bereichen wie z. B.:
+  - ISO / Asymmetry
+  - Unilateral CMJ
+  - Global CMJ
+  - KAI
+  - Demographics
+
+  Anschließend wird verglichen, wie stark diese Domänen in beiden Modellen insgesamt vertreten sind.
+
+### Ziel
+
+Dieses Notebook dient dazu,
+
+1. die inhaltliche Konsistenz beider reduzierter Modelle zu bewerten,
+2. zu prüfen, welche Feature-Signale im stabileren Modell bestätigt werden, und
+3. globale SHAP-Muster nicht nur auf Feature-, sondern auch auf Domänenebene zu vergleichen.
