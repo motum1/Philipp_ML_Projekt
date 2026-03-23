@@ -40,3 +40,32 @@ Dieses Notebook dient als erster Screening-Schritt, um
 1. potenziell problematische Datenwerte sichtbar zu machen,
 2. einen ersten Überblick über die Modellleistung verschiedener Klassifikatoren zu erhalten und
 3. die Modellauswahl gezielt vorzubereiten.
+
+
+## 2. Nested Cross-Validation und Vergleich reduzierter Feature-Sets
+
+Dieser Abschnitt umfasst zwei zentrale Schritte der Modellverfeinerung: die methodisch saubere Entwicklung eines logistischen Regressionsmodells mit **Nested Cross-Validation** sowie den anschließenden Vergleich verschiedener **reduzierter Feature-Sets**.
+
+### Nested Cross-Validation mit Feature-Selektion und Kalibrierung
+
+Im ersten Teil wird ein logistisches Regressionsmodell in einem verschachtelten Validierungsansatz entwickelt. Innerhalb jedes Outer-Folds werden die Features zunächst über **Mutual Information** gerankt und anschließend mit einem **Korrelationsfilter** bereinigt, um redundante Variablen zu entfernen. Im inneren Cross-Validation-Schritt optimiert **Optuna** sowohl die Anzahl der verwendeten Features als auch die Regularisierungsstärke `C`.
+
+Das finale Modell wird anschließend auf Basis der besten Parameter trainiert und zusätzlich mit **Platt Scaling** kalibriert, um die Vorhersagewahrscheinlichkeiten besser interpretierbar zu machen. Als Ergebnisse werden Leistungsmetriken mit empirischen Konfidenzintervallen, Hyperparameter-Zusammenfassungen, Feature-Häufigkeiten sowie gepoolte ROC- und Kalibrationsplots ausgegeben.
+
+### Vergleich von Full-, Top-38- und Stable-70%-Datensätzen
+
+Im zweiten Teil wird geprüft, wie sich die Modellleistung verändert, wenn statt aller numerischen Variablen nur reduzierte Feature-Sets verwendet werden. Verglichen werden:
+
+- **Full**: alle numerischen Features
+- **Top-38**: die 38 wichtigsten selektierten Merkmale
+- **Stable-70%**: ein kompakteres Set aus besonders stabilen Features
+
+Für alle drei Datensätze wird dieselbe logistische Regression mit identischem Preprocessing und **5×10 Repeated Stratified Cross-Validation** verwendet. Die Ergebnisse werden als Mittelwerte mit empirischen 95%-Konfidenzintervallen tabellarisch zusammengefasst.
+
+### Ziel
+
+Dieser Abschnitt dient dazu,
+
+1. ein methodisch robustes logistisches Regressionsmodell ohne Data Leakage zu entwickeln,
+2. stabile und wiederholt ausgewählte Merkmale zu identifizieren und
+3. zu prüfen, ob reduzierte Feature-Sets eine vergleichbare Leistung wie das vollständige Modell erreichen.
